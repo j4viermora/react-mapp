@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React  from 'react'
 import mapboxgl from 'mapbox-gl'
 import './MapView.css'
 import { token } from '../constants/constants'
@@ -7,13 +7,18 @@ import { useMapBox } from '../hooks/useMapBox';
 
 mapboxgl.accessToken = token;
 
+const initialPoint = {
+    lng: -64.7023,
+    lat: 10.2047,
+    zoom: 13.83
+}
 
 
 export const MapView = () => {
 
-    const mapaDiv = useRef()
-    const mapa  = useRef()
-    const { coords } = useMapBox( mapa, mapaDiv )
+    // const mapaDiv = useRef()
+    // const mapa  = useRef()
+    const { coords , setRef  } = useMapBox( initialPoint )
 
 
 
@@ -24,7 +29,7 @@ export const MapView = () => {
             </div>
 
             <div
-            ref={ mapaDiv }
+            ref={ setRef }
             className="mapContainer"
             />
 
