@@ -1,4 +1,4 @@
-import React  from 'react'
+import React, { useEffect }  from 'react'
 import mapboxgl from 'mapbox-gl'
 import './MapView.css'
 import { token } from '../constants/constants'
@@ -18,9 +18,19 @@ export const MapView = () => {
 
     // const mapaDiv = useRef()
     // const mapa  = useRef()
-    const { coords , setRef  } = useMapBox( initialPoint )
+    const { coords , setRef, newMarker$, moveMarker$  } = useMapBox( initialPoint )
 
+    useEffect( function(){
 
+        // newMarker$.subscribe( marker => console.log( marker ) );
+
+    },[newMarker$] )
+
+    useEffect( function(){
+
+        moveMarker$.subscribe( moveMaker => console.log(moveMaker) )
+
+    }, [ moveMarker$ ] )
 
     return (
         <>
